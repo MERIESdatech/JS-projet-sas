@@ -157,4 +157,5 @@ function annulerTicket() {
     console.log("Ticket annulé avec succès.");
     afficherMenu();
   });
+  }
 
