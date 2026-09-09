@@ -1,6 +1,8 @@
 # Railway Manager
 
-![Railway Manager Menu](./assets/menu.png)
+<p align="center">
+  <img src="./assets/menu.png" alt="Railway Manager Menu">
+</p>
 
 A menu-driven JavaScript program for managing railway trips and passenger tickets. The program includes functionalities for displaying trips, buying tickets, searching and cancelling tickets, filtering and sorting trips, and displaying statistics.
 
