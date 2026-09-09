@@ -10,6 +10,7 @@ var trips = [
         price: 25,
         availableSeats: 50
     },
+
     {
         id: 2,
         departure: "Safi",
@@ -19,6 +20,7 @@ var trips = [
         price: 90,
         availableSeats: 50
     },
+
     {
         id: 3,
         departure: "Safi",
@@ -28,6 +30,7 @@ var trips = [
         price: 140,
         availableSeats: 50
     },
+
     {
         id: 4,
         departure: "Youssoufia",
@@ -37,6 +40,7 @@ var trips = [
         price: 65,
         availableSeats: 50
     },
+
     {
         id: 5,
         departure: "Youssoufia",
@@ -46,6 +50,7 @@ var trips = [
         price: 110,
         availableSeats: 50
     },
+
     {
         id: 6,
         departure: "Marrakech",
@@ -55,6 +60,7 @@ var trips = [
         price: 120,
         availableSeats: 50
     },
+
     {
         id: 7,
         departure: "Marrakech",
@@ -64,6 +70,7 @@ var trips = [
         price: 150,
         availableSeats: 50
     },
+
     {
         id: 8,
         departure: "Casablanca",
@@ -73,6 +80,7 @@ var trips = [
         price: 40,
         availableSeats: 50
     },
+
     {
         id: 9,
         departure: "Casablanca",
@@ -82,6 +90,7 @@ var trips = [
         price: 55,
         availableSeats: 50
     },
+
     {
         id: 10,
         departure: "Rabat",
@@ -91,6 +100,7 @@ var trips = [
         price: 30,
         availableSeats: 50
     },
+
     {
         id: 11,
         departure: "Rabat",
@@ -100,6 +110,7 @@ var trips = [
         price: 95,
         availableSeats: 50
     },
+
     {
         id: 12,
         departure: "Kenitra",
@@ -109,6 +120,7 @@ var trips = [
         price: 85,
         availableSeats: 50
     },
+
     {
         id: 13,
         departure: "Fes",
@@ -118,6 +130,7 @@ var trips = [
         price: 35,
         availableSeats: 50
     },
+
     {
         id: 14,
         departure: "Fes",
@@ -127,6 +140,7 @@ var trips = [
         price: 130,
         availableSeats: 50
     },
+
     {
         id: 15,
         departure: "Meknes",
@@ -136,6 +150,7 @@ var trips = [
         price: 80,
         availableSeats: 50
     },
+
     {
         id: 16,
         departure: "Meknes",
@@ -145,6 +160,7 @@ var trips = [
         price: 105,
         availableSeats: 50
     },
+
     {
         id: 17,
         departure: "Casablanca",
@@ -154,6 +170,7 @@ var trips = [
         price: 50,
         availableSeats: 50
     },
+
     {
         id: 18,
         departure: "El Jadida",
@@ -163,6 +180,7 @@ var trips = [
         price: 60,
         availableSeats: 50
     },
+
     {
         id: 19,
         departure: "Marrakech",
@@ -172,6 +190,7 @@ var trips = [
         price: 100,
         availableSeats: 50
     },
+
     {
         id: 20,
         departure: "Agadir",
@@ -187,8 +206,8 @@ var tickets = [];
 var prochainIdTicket = 1;
 
 
-// Cette fonction affiche le menu principal et permet de choisir une action.
 function afficherMenu() {
+
     var choix = "";
 
     while (choix != "0") {
@@ -258,52 +277,40 @@ function afficherMenu() {
 }
 
 
-// Cette fonction affiche tous les trajets disponibles avec leurs informations.
 function afficherTrajets() {
+
     console.log("");
     console.log("=== TRAJETS DISPONIBLES ===");
 
     for (var i = 0; i < trips.length; i++) {
 
         console.log("");
-        console.log(
-            "#" + trips[i].id + " " +
+        console.log("#" + trips[i].id + " " +
             trips[i].departure + " -> " +
-            trips[i].destination
-        );
+            trips[i].destination);
 
-        console.log(
-            "Depart : " +
-            trips[i].departureTime
-        );
+        console.log("Depart : " + trips[i].departureTime);
 
-        console.log(
-            "Arrivee : " +
-            trips[i].arrivalTime
-        );
+        console.log("Arrivee : " + trips[i].arrivalTime);
 
-        console.log(
-            "Prix : " +
-            trips[i].price +
-            " DH"
-        );
+        console.log("Prix : " + trips[i].price + " DH");
 
-        console.log(
-            "Places disponibles : " +
-            trips[i].availableSeats
-        );
+        console.log("Places disponibles : " +
+            trips[i].availableSeats);
     }
 }
 
 
-// Cette fonction cherche un trajet à partir de son identifiant.
 function rechercherTrajet(id) {
+
     var trajet = null;
 
     for (var i = 0; i < trips.length; i++) {
 
         if (trips[i].id == id) {
+
             trajet = trips[i];
+
             break;
         }
     }
@@ -312,58 +319,75 @@ function rechercherTrajet(id) {
 }
 
 
-// Cette fonction permet au passager d'acheter un ticket pour un trajet.
 function acheterTicket() {
+
     console.log("");
     console.log("=== ACHETER UN TICKET ===");
 
     var nom = prompt("Nom du passager : ");
-    var idTrajet = Number(prompt("Identifiant du trajet : "));
+
+    var idTrajet = Number(
+        prompt("Identifiant du trajet : ")
+    );
 
     var trajet = rechercherTrajet(idTrajet);
 
     if (trajet == null) {
+
         console.log("Trajet introuvable.");
+
         return;
     }
 
-    if (trajet.availableSeats < 1) {
+    if (trajet.availableSeats == 0) {
+
         console.log("Train complet.");
+
         return;
     }
 
-    var numeroPlace = 50 - trajet.availableSeats + 1;
+    var numeroPlace = 51 - trajet.availableSeats;
 
     var ticket = {
+
         id: prochainIdTicket,
+
         passengerName: nom,
+
         tripId: trajet.id,
+
         seatNumber: numeroPlace,
+
         price: trajet.price
     };
 
-    tickets.push(ticket);
+    tickets[tickets.length] = ticket;
 
-    prochainIdTicket++;
+    prochainIdTicket = prochainIdTicket + 1;
 
-    trajet.availableSeats--;
+    trajet.availableSeats =
+        trajet.availableSeats - 1;
 
     console.log("");
+
     console.log("Ticket achete avec succes.");
 
     afficherUnTicket(ticket);
 }
 
 
-// Cette fonction affiche les informations d'un seul ticket.
 function afficherUnTicket(ticket) {
+
     var trajet = rechercherTrajet(ticket.tripId);
 
     console.log("");
+
     console.log("Ticket #" + ticket.id);
+
     console.log("Passager : " + ticket.passengerName);
 
     if (trajet != null) {
+
         console.log(
             "Trajet : " +
             trajet.departure +
@@ -373,34 +397,41 @@ function afficherUnTicket(ticket) {
     }
 
     console.log("Place : " + ticket.seatNumber);
+
     console.log("Prix : " + ticket.price + " DH");
 }
 
 
-// Cette fonction affiche tous les tickets qui ont ete achetes.
 function afficherTickets() {
+
     console.log("");
+
     console.log("=== TICKETS ===");
 
     if (tickets.length == 0) {
+
         console.log("Aucun ticket enregistre.");
+
         return;
     }
 
     for (var i = 0; i < tickets.length; i++) {
+
         afficherUnTicket(tickets[i]);
     }
 }
 
 
-// Cette fonction cherche la position d'un ticket dans le tableau.
 function rechercherIndexTicket(id) {
+
     var index = -1;
 
     for (var i = 0; i < tickets.length; i++) {
 
         if (tickets[i].id == id) {
+
             index = i;
+
             break;
         }
     }
@@ -409,9 +440,10 @@ function rechercherIndexTicket(id) {
 }
 
 
-// Cette fonction permet d'annuler un ticket et de liberer la place.
 function annulerTicket() {
+
     console.log("");
+
     console.log("=== ANNULER UN TICKET ===");
 
     var idTicket = Number(
@@ -421,7 +453,9 @@ function annulerTicket() {
     var index = rechercherIndexTicket(idTicket);
 
     if (index == -1) {
+
         console.log("Ticket introuvable.");
+
         return;
     }
 
@@ -430,44 +464,92 @@ function annulerTicket() {
     var trajet = rechercherTrajet(ticket.tripId);
 
     if (trajet != null) {
-        trajet.availableSeats++;
+
+        trajet.availableSeats =
+            trajet.availableSeats + 1;
     }
 
-    tickets.splice(index, 1);
+    for (var i = index; i < tickets.length - 1; i++) {
+
+        tickets[i] = tickets[i + 1];
+    }
+
+    tickets.length = tickets.length - 1;
 
     console.log("Ticket annule avec succes.");
 }
 
 
-// Cette fonction recherche les tickets a partir du nom du passager.
+
 function rechercherTicket() {
+
     console.log("");
     console.log("=== RECHERCHER UN TICKET ===");
 
-    var nom = prompt("Nom du passager : ");
+    console.log("1. Rechercher par ID");
+    console.log("2. Rechercher par nom");
 
-    var trouve = false;
+    var choix = prompt("Votre choix : ");
 
-    for (var i = 0; i < tickets.length; i++) {
+    if (choix == "1") {
 
-        if (
-            tickets[i].passengerName.toLowerCase() ==
-            nom.toLowerCase()
-        ) {
-            afficherUnTicket(tickets[i]);
-            trouve = true;
+        var id = Number(
+            prompt("Identifiant du ticket : ")
+        );
+
+        var trouve = false;
+
+        for (var i = 0; i < tickets.length; i++) {
+
+            if (tickets[i].id == id) {
+
+                afficherUnTicket(tickets[i]);
+
+                trouve = true;
+
+                break;
+            }
         }
-    }
 
-    if (trouve == false) {
-        console.log("Aucun ticket trouve.");
+        if (trouve == false) {
+
+            console.log("Ticket introuvable.");
+        }
+
+    } else if (choix == "2") {
+
+        var nom = prompt("Nom du passager : ");
+
+        var trouve = false;
+
+        for (var i = 0; i < tickets.length; i++) {
+
+            if (tickets[i].passengerName == nom) {
+
+                afficherUnTicket(tickets[i]);
+
+                trouve = true;
+            }
+        }
+
+        if (trouve == false) {
+
+            console.log("Aucun ticket trouve.");
+        }
+
+    } else {
+
+        console.log("Choix invalide.");
     }
 }
 
 
-// Cette fonction affiche les trajets qui partent d'une ville choisie.
+
+
 function filtrerTrajets() {
+
     console.log("");
+
     console.log("=== FILTRER LES TRAJETS ===");
 
     var ville = prompt("Ville de depart : ");
@@ -476,10 +558,7 @@ function filtrerTrajets() {
 
     for (var i = 0; i < trips.length; i++) {
 
-        if (
-            trips[i].departure.toLowerCase() ==
-            ville.toLowerCase()
-        ) {
+        if (trips[i].departure == ville) {
 
             console.log(
                 trips[i].departure +
@@ -495,17 +574,19 @@ function filtrerTrajets() {
     }
 
     if (trouve == false) {
+
         console.log("Aucun trajet trouve.");
     }
 }
 
 
-// Cette fonction trie les trajets du prix le moins cher au plus cher.
 function trierTrajets() {
+
     var copie = [];
 
     for (var i = 0; i < trips.length; i++) {
-        copie.push(trips[i]);
+
+        copie[i] = trips[i];
     }
 
     for (var i = 0; i < copie.length - 1; i++) {
@@ -524,6 +605,7 @@ function trierTrajets() {
     }
 
     console.log("");
+
     console.log("=== TRAJETS PAR PRIX CROISSANT ===");
 
     for (var i = 0; i < copie.length; i++) {
@@ -540,9 +622,10 @@ function trierTrajets() {
 }
 
 
-// Cette fonction calcule et affiche les statistiques des ventes.
 function afficherStatistiques() {
+
     console.log("");
+
     console.log("=== STATISTIQUES ===");
 
     console.log(
@@ -567,14 +650,13 @@ function afficherStatistiques() {
 
     if (tickets.length == 0) {
 
-        console.log(
-            "Trajet le plus vendu : aucun"
-        );
+        console.log("Trajet le plus vendu : aucun");
 
         return;
     }
 
     var meilleurTrajet = null;
+
     var meilleurNombre = 0;
 
     for (var i = 0; i < trips.length; i++) {
@@ -583,11 +665,9 @@ function afficherStatistiques() {
 
         for (var j = 0; j < tickets.length; j++) {
 
-            if (
-                tickets[j].tripId ==
-                trips[i].id
-            ) {
-                compteur++;
+            if (tickets[j].tripId == trips[i].id) {
+
+                compteur = compteur + 1;
             }
         }
 
