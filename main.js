@@ -135,5 +135,26 @@ function afficherTickets() {
   }
   afficherMenu();
 }
-
+// Fonction pour annuler un ticket
+function annulerTicket() {
+  rl.question("Identifiant du ticket : ", function(idTicket) {
+    var index = tickets.findIndex(function(t) {
+      return t.id == idTicket;
+    });
+    if (index == -1) {
+      console.log("Ticket introuvable.");
+      afficherMenu();
+      return;
+    }
+    var ticket = tickets[index];
+    var trajet = trips.find(function(t) {
+      return t.id == ticket.tripId;
+    });
+    if (trajet) {
+      trajet.availableSeats = trajet.availableSeats + 1;
+    }
+    tickets.splice(index, 1);
+    console.log("Ticket annulé avec succès.");
+    afficherMenu();
+  });
 
