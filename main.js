@@ -332,7 +332,7 @@ function acheterTicket() {
         return;
     }
 
-    var numeroPlace = 50 - trajet.availableSeats + 1;
+    var numeroPlace = 50 - trajet.availableSeats;
 
     var ticket = {
         id: prochainIdTicket,
@@ -377,7 +377,7 @@ function afficherUnTicket(ticket) {
 }
 
 
-// Cette fonction affiche tous les tickets qui ont ete achetes.
+// Cette fonction affiche tous les tickets qui ont été achetés.
 function afficherTickets() {
     console.log("");
     console.log("=== TICKETS ===");
@@ -439,7 +439,7 @@ function annulerTicket() {
 }
 
 
-// Cette fonction recherche les tickets a partir du nom du passager.
+// Cette fonction recherche les tickets à partir du nom du passager.
 function rechercherTicket() {
     console.log("");
     console.log("=== RECHERCHER UN TICKET ===");
