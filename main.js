@@ -60,4 +60,80 @@ function afficherMenu() {
     }
   });
 }
+// Fonction pour afficher tous les trajets
+function afficherTrajets() {
+  console.log("=== TRAJETS DISPONIBLES ===");
+  for (var i = 0; i < trips.length; i++) {
+    console.log("#" + trips[i].id + " " + trips[i].departure + " → " + trips[i].destination);
+    console.log("Départ : " + trips[i].departureTime);
+    console.log("Arrivée : " + trips[i].arrivalTime);
+    console.log("Prix : " + trips[i].price + " DH");
+    console.log("Places disponibles : " + trips[i].availableSeats);
+    console.log("");
+  }
+  afficherMenu();
+}
+
+// Fonction pour afficher un seul ticket
+function afficherUnTicket(ticket) {
+  var trajet = trips.find(function(t) {
+    return t.id == ticket.tripId;
+  });
+  console.log("Ticket #" + ticket.id);
+  console.log("Passager : " + ticket.passengerName);
+  if (trajet) {
+    console.log("Trajet : " + trajet.departure + " → " + trajet.destination);
+  }
+  console.log("Place : " + ticket.seatNumber);
+  console.log("Prix : " + ticket.price + " DH");
+  console.log("");
+}
+
+// Fonction pour acheter un ticket
+function acheterTicket() {
+  rl.question("Nom du passager : ", function(nom) {
+    rl.question("Identifiant du trajet : ", function(idTrajet) {
+      var trajet = trips.find(function(t) {
+        return t.id == idTrajet;
+      });
+      if (trajet == undefined) {
+        console.log("Trajet introuvable.");
+        afficherMenu();
+        return;
+      }
+      if (trajet.availableSeats < 1) {
+        console.log("Train complet.");
+        afficherMenu();
+        return;
+      }
+      var ticket = {
+        id: tickets.length + 1,
+        passengerName: nom,
+        tripId: trajet.id,
+        seatNumber: 50 - trajet.availableSeats + 1,
+        price: trajet.price
+      };
+      tickets.push(ticket);
+      trajet.availableSeats = trajet.availableSeats - 1;
+      console.log("Ticket acheté avec succès.");
+      afficherUnTicket(ticket);
+      afficherMenu();
+    });
+  });
+}
+
+// Fonction pour afficher tous les tickets
+function afficherTickets() {
+  if (tickets.length == 0) {
+    console.log("Aucun ticket enregistré.");
+    afficherMenu();
+    return;
+  }
+  console.log("=== TICKETS ===");
+  for (var i = 0; i < tickets.length; i++) {
+    afficherUnTicket(tickets[i]);
+  }
+  afficherMenu();
+}
+
 
