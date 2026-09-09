@@ -1,5 +1,5 @@
-
 var prompt = require("prompt-sync")();
+
 var trips = [
     {
         id: 1,
@@ -145,8 +145,6 @@ var trips = [
         price: 105,
         availableSeats: 50
     },
-
-    
     {
         id: 17,
         departure: "Casablanca",
@@ -174,7 +172,6 @@ var trips = [
         price: 100,
         availableSeats: 50
     },
-
     {
         id: 20,
         departure: "Agadir",
@@ -190,6 +187,7 @@ var tickets = [];
 var prochainIdTicket = 1;
 
 
+// Cette fonction affiche le menu principal et permet de choisir une action.
 function afficherMenu() {
     var choix = "";
 
@@ -260,6 +258,7 @@ function afficherMenu() {
 }
 
 
+// Cette fonction affiche tous les trajets disponibles avec leurs informations.
 function afficherTrajets() {
     console.log("");
     console.log("=== TRAJETS DISPONIBLES ===");
@@ -297,6 +296,7 @@ function afficherTrajets() {
 }
 
 
+// Cette fonction cherche un trajet à partir de son identifiant.
 function rechercherTrajet(id) {
     var trajet = null;
 
@@ -312,6 +312,7 @@ function rechercherTrajet(id) {
 }
 
 
+// Cette fonction permet au passager d'acheter un ticket pour un trajet.
 function acheterTicket() {
     console.log("");
     console.log("=== ACHETER UN TICKET ===");
@@ -354,6 +355,7 @@ function acheterTicket() {
 }
 
 
+// Cette fonction affiche les informations d'un seul ticket.
 function afficherUnTicket(ticket) {
     var trajet = rechercherTrajet(ticket.tripId);
 
@@ -375,6 +377,7 @@ function afficherUnTicket(ticket) {
 }
 
 
+// Cette fonction affiche tous les tickets qui ont ete achetes.
 function afficherTickets() {
     console.log("");
     console.log("=== TICKETS ===");
@@ -390,6 +393,7 @@ function afficherTickets() {
 }
 
 
+// Cette fonction cherche la position d'un ticket dans le tableau.
 function rechercherIndexTicket(id) {
     var index = -1;
 
@@ -405,6 +409,7 @@ function rechercherIndexTicket(id) {
 }
 
 
+// Cette fonction permet d'annuler un ticket et de liberer la place.
 function annulerTicket() {
     console.log("");
     console.log("=== ANNULER UN TICKET ===");
@@ -434,6 +439,7 @@ function annulerTicket() {
 }
 
 
+// Cette fonction recherche les tickets a partir du nom du passager.
 function rechercherTicket() {
     console.log("");
     console.log("=== RECHERCHER UN TICKET ===");
@@ -459,6 +465,7 @@ function rechercherTicket() {
 }
 
 
+// Cette fonction affiche les trajets qui partent d'une ville choisie.
 function filtrerTrajets() {
     console.log("");
     console.log("=== FILTRER LES TRAJETS ===");
@@ -493,6 +500,7 @@ function filtrerTrajets() {
 }
 
 
+// Cette fonction trie les trajets du prix le moins cher au plus cher.
 function trierTrajets() {
     var copie = [];
 
@@ -532,6 +540,7 @@ function trierTrajets() {
 }
 
 
+// Cette fonction calcule et affiche les statistiques des ventes.
 function afficherStatistiques() {
     console.log("");
     console.log("=== STATISTIQUES ===");
@@ -605,5 +614,6 @@ function afficherStatistiques() {
         );
     }
 }
+
 
 afficherMenu();
