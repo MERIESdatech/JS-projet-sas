@@ -460,6 +460,15 @@ function annulerTicket() {
     }
 
     let ticket = tickets[index];
+    
+    let confirmation = prompt("Êtes-vous sûr de vouloir annuler ce ticket ? (oui/non) ");
+
+if (confirmation.toLowerCase() != "oui") {
+
+    console.log("Annulation du ticket annulée.");
+
+    return;
+}
 
     let trajet = rechercherTrajet(ticket.tripId);
 
