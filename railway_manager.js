@@ -202,8 +202,83 @@ let trips = [
     }
 ];
 
-let tickets = [];
-let prochainIdTicket = 1;
+
+let tickets = [
+    {
+        id: 1,
+        passengerName: "ahmed",
+        tripId: 1,
+        seatNumber: 1,
+        price: 25
+    },
+    {
+        id: 2,
+        passengerName: "youssef",
+        tripId: 2,
+        seatNumber: 1,
+        price: 90
+    },
+    {
+        id: 3,
+        passengerName: "sara",
+        tripId: 3,
+        seatNumber: 1,
+        price: 140
+    },
+    {
+        id: 4,
+        passengerName: "fatima",
+        tripId: 4,
+        seatNumber: 1,
+        price: 65
+    },
+    {
+        id: 5,
+        passengerName: "omar",
+        tripId: 5,
+        seatNumber: 1,
+        price: 110
+    },
+    {
+        id: 6,
+        passengerName: "khadija",
+        tripId: 6,
+        seatNumber: 1,
+        price: 120
+    },
+    {
+        id: 7,
+        passengerName: "mehdi",
+        tripId: 7,
+        seatNumber: 1,
+        price: 150
+    },
+    {
+        id: 8,
+        passengerName: "salma",
+        tripId: 8,
+        seatNumber: 1,
+        price: 40
+    },
+    {
+        id: 9,
+        passengerName: "hamza",
+        tripId: 9,
+        seatNumber: 1,
+        price: 55
+    },
+    {
+        id: 10,
+        passengerName: "imane",
+        tripId: 10,
+        seatNumber: 1,
+        price: 30
+    }
+];
+
+let prochainIdTicket = 11;
+
+
 
 
 function afficherMenu() {
@@ -346,7 +421,31 @@ function acheterTicket() {
         return;
     }
 
-    let numeroPlace = 51 - trajet.availableSeats;
+    // Chercher la première place libre pour ce trajet
+    let numeroPlace = 1;
+
+    while (true) {
+
+        let placeOccupee = false;
+
+        for (let i = 0; i < tickets.length; i++) {
+
+            if (tickets[i].tripId == trajet.id &&
+                tickets[i].seatNumber == numeroPlace) {
+
+                placeOccupee = true;
+
+                break;
+            }
+        }
+
+        if (placeOccupee == false) {
+
+            break;
+        }
+
+        numeroPlace = numeroPlace + 1;
+    }
 
     let ticket = {
 
@@ -460,15 +559,15 @@ function annulerTicket() {
     }
 
     let ticket = tickets[index];
-    
+
     let confirmation = prompt("Êtes-vous sûr de vouloir annuler ce ticket ? (oui/non) ");
 
-if (confirmation.toLowerCase() != "oui") {
+    if (confirmation.toLowerCase() != "oui") {
 
-    console.log("Annulation du ticket annulée.");
+        console.log("Annulation du ticket annulée.");
 
-    return;
-}
+        return;
+    }
 
     let trajet = rechercherTrajet(ticket.tripId);
 
@@ -489,10 +588,10 @@ if (confirmation.toLowerCase() != "oui") {
 }
 
 
-
 function rechercherTicket() {
 
     console.log("");
+
     console.log("=== RECHERCHER UN TICKET ===");
 
     console.log("1. Rechercher par ID");
@@ -551,8 +650,6 @@ function rechercherTicket() {
         console.log("Choix invalide.");
     }
 }
-
-
 
 
 function filtrerTrajets() {
