@@ -1,6 +1,6 @@
-var prompt = require("prompt-sync")();
+let prompt = require("prompt-sync")();
 
-var trips = [
+let trips = [
     {
         id: 1,
         departure: "Safi",
@@ -202,13 +202,13 @@ var trips = [
     }
 ];
 
-var tickets = [];
-var prochainIdTicket = 1;
+let tickets = [];
+let prochainIdTicket = 1;
 
 
 function afficherMenu() {
 
-    var choix = "";
+    let choix = "";
 
     while (choix != "0") {
 
@@ -282,7 +282,7 @@ function afficherTrajets() {
     console.log("");
     console.log("=== TRAJETS DISPONIBLES ===");
 
-    for (var i = 0; i < trips.length; i++) {
+    for (let i = 0; i < trips.length; i++) {
 
         console.log("");
         console.log("#" + trips[i].id + " " +
@@ -303,9 +303,9 @@ function afficherTrajets() {
 
 function rechercherTrajet(id) {
 
-    var trajet = null;
+    let trajet = null;
 
-    for (var i = 0; i < trips.length; i++) {
+    for (let i = 0; i < trips.length; i++) {
 
         if (trips[i].id == id) {
 
@@ -324,13 +324,13 @@ function acheterTicket() {
     console.log("");
     console.log("=== ACHETER UN TICKET ===");
 
-    var nom = prompt("Nom du passager : ");
+    let nom = prompt("Nom du passager : ");
 
-    var idTrajet = Number(
+    let idTrajet = Number(
         prompt("Identifiant du trajet : ")
     );
 
-    var trajet = rechercherTrajet(idTrajet);
+    let trajet = rechercherTrajet(idTrajet);
 
     if (trajet == null) {
 
@@ -346,9 +346,9 @@ function acheterTicket() {
         return;
     }
 
-    var numeroPlace = 51 - trajet.availableSeats;
+    let numeroPlace = 51 - trajet.availableSeats;
 
-    var ticket = {
+    let ticket = {
 
         id: prochainIdTicket,
 
@@ -378,7 +378,7 @@ function acheterTicket() {
 
 function afficherUnTicket(ticket) {
 
-    var trajet = rechercherTrajet(ticket.tripId);
+    let trajet = rechercherTrajet(ticket.tripId);
 
     console.log("");
 
@@ -415,7 +415,7 @@ function afficherTickets() {
         return;
     }
 
-    for (var i = 0; i < tickets.length; i++) {
+    for (let i = 0; i < tickets.length; i++) {
 
         afficherUnTicket(tickets[i]);
     }
@@ -424,9 +424,9 @@ function afficherTickets() {
 
 function rechercherIndexTicket(id) {
 
-    var index = -1;
+    let index = -1;
 
-    for (var i = 0; i < tickets.length; i++) {
+    for (let i = 0; i < tickets.length; i++) {
 
         if (tickets[i].id == id) {
 
@@ -446,11 +446,11 @@ function annulerTicket() {
 
     console.log("=== ANNULER UN TICKET ===");
 
-    var idTicket = Number(
+    let idTicket = Number(
         prompt("Identifiant du ticket : ")
     );
 
-    var index = rechercherIndexTicket(idTicket);
+    let index = rechercherIndexTicket(idTicket);
 
     if (index == -1) {
 
@@ -459,9 +459,9 @@ function annulerTicket() {
         return;
     }
 
-    var ticket = tickets[index];
+    let ticket = tickets[index];
 
-    var trajet = rechercherTrajet(ticket.tripId);
+    let trajet = rechercherTrajet(ticket.tripId);
 
     if (trajet != null) {
 
@@ -469,7 +469,7 @@ function annulerTicket() {
             trajet.availableSeats + 1;
     }
 
-    for (var i = index; i < tickets.length - 1; i++) {
+    for (let i = index; i < tickets.length - 1; i++) {
 
         tickets[i] = tickets[i + 1];
     }
@@ -489,17 +489,17 @@ function rechercherTicket() {
     console.log("1. Rechercher par ID");
     console.log("2. Rechercher par nom");
 
-    var choix = prompt("Votre choix : ");
+    let choix = prompt("Votre choix : ");
 
     if (choix == "1") {
 
-        var id = Number(
+        let id = Number(
             prompt("Identifiant du ticket : ")
         );
 
-        var trouve = false;
+        let trouve = false;
 
-        for (var i = 0; i < tickets.length; i++) {
+        for (let i = 0; i < tickets.length; i++) {
 
             if (tickets[i].id == id) {
 
@@ -518,11 +518,11 @@ function rechercherTicket() {
 
     } else if (choix == "2") {
 
-        var nom = prompt("Nom du passager : ");
+        let nom = prompt("Nom du passager : ");
 
-        var trouve = false;
+        let trouve = false;
 
-        for (var i = 0; i < tickets.length; i++) {
+        for (let i = 0; i < tickets.length; i++) {
 
             if (tickets[i].passengerName == nom) {
 
@@ -552,11 +552,11 @@ function filtrerTrajets() {
 
     console.log("=== FILTRER LES TRAJETS ===");
 
-    var ville = prompt("Ville de depart : ");
+    let ville = prompt("Ville de depart : ");
 
-    var trouve = false;
+    let trouve = false;
 
-    for (var i = 0; i < trips.length; i++) {
+    for (let i = 0; i < trips.length; i++) {
 
         if (trips[i].departure == ville) {
 
@@ -582,20 +582,20 @@ function filtrerTrajets() {
 
 function trierTrajets() {
 
-    var copie = [];
+    let copie = [];
 
-    for (var i = 0; i < trips.length; i++) {
+    for (let i = 0; i < trips.length; i++) {
 
         copie[i] = trips[i];
     }
 
-    for (var i = 0; i < copie.length - 1; i++) {
+    for (let i = 0; i < copie.length - 1; i++) {
 
-        for (var j = i + 1; j < copie.length; j++) {
+        for (let j = i + 1; j < copie.length; j++) {
 
             if (copie[i].price > copie[j].price) {
 
-                var temp = copie[i];
+                let temp = copie[i];
 
                 copie[i] = copie[j];
 
@@ -608,7 +608,7 @@ function trierTrajets() {
 
     console.log("=== TRAJETS PAR PRIX CROISSANT ===");
 
-    for (var i = 0; i < copie.length; i++) {
+    for (let i = 0; i < copie.length; i++) {
 
         console.log(
             copie[i].departure +
@@ -633,9 +633,9 @@ function afficherStatistiques() {
         tickets.length
     );
 
-    var chiffreAffaires = 0;
+    let chiffreAffaires = 0;
 
-    for (var i = 0; i < tickets.length; i++) {
+    for (let i = 0; i < tickets.length; i++) {
 
         chiffreAffaires =
             chiffreAffaires +
@@ -655,15 +655,15 @@ function afficherStatistiques() {
         return;
     }
 
-    var meilleurTrajet = null;
+    let meilleurTrajet = null;
 
-    var meilleurNombre = 0;
+    let meilleurNombre = 0;
 
-    for (var i = 0; i < trips.length; i++) {
+    for (let i = 0; i < trips.length; i++) {
 
-        var compteur = 0;
+        let compteur = 0;
 
-        for (var j = 0; j < tickets.length; j++) {
+        for (let j = 0; j < tickets.length; j++) {
 
             if (tickets[j].tripId == trips[i].id) {
 
