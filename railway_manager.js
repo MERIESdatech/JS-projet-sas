@@ -1,5 +1,5 @@
 let prompt = require("prompt-sync")();
-
+//list des trajets
 let trips = [
     {
         id: 1,
@@ -202,7 +202,7 @@ let trips = [
     }
 ];
 
-
+// list des tickets
 let tickets = [
     {
         id: 1,
@@ -280,6 +280,7 @@ let prochainIdTicket = 11;
 
 
 
+// Cette fonction affiche le menu et permet a lutilisateur
 
 function afficherMenu() {
 
@@ -351,7 +352,7 @@ function afficherMenu() {
     }
 }
 
-
+// Cette fonction parcourt le tableau trips et affiche
 function afficherTrajets() {
 
     console.log("");
@@ -375,6 +376,7 @@ function afficherTrajets() {
     }
 }
 
+// Cette fonction cherche un trajet grace a son identifiant
 
 function rechercherTrajet(id) {
 
@@ -393,7 +395,7 @@ function rechercherTrajet(id) {
     return trajet;
 }
 
-
+// Cette fonction permet a un passager d'acheter un ticket
 function acheterTicket() {
 
     console.log("");
@@ -421,7 +423,6 @@ function acheterTicket() {
         return;
     }
 
-    // Chercher la première place libre pour ce trajet
     let numeroPlace = 1;
 
     while (true) {
@@ -474,6 +475,7 @@ function acheterTicket() {
     afficherUnTicket(ticket);
 }
 
+// Cette fonction affiche toutes les informations
 
 function afficherUnTicket(ticket) {
 
@@ -500,6 +502,7 @@ function afficherUnTicket(ticket) {
     console.log("Prix : " + ticket.price + " DH");
 }
 
+// Cette fonction affiche tous les tickets enregistres
 
 function afficherTickets() {
 
@@ -520,6 +523,7 @@ function afficherTickets() {
     }
 }
 
+// Cette fonction cherche la position d'un ticket dans
 
 function rechercherIndexTicket(id) {
 
@@ -538,6 +542,8 @@ function rechercherIndexTicket(id) {
     return index;
 }
 
+
+// Cette fonction permet de supprimer un ticket
 
 function annulerTicket() {
 
@@ -587,6 +593,7 @@ function annulerTicket() {
     console.log("Ticket annule avec succes.");
 }
 
+// Lutilisateur peut rechercher un ticket de deux facons :
 
 function rechercherTicket() {
 
@@ -651,6 +658,7 @@ function rechercherTicket() {
     }
 }
 
+// Cette fonction permet de rechercher les trajets
 
 function filtrerTrajets() {
 
@@ -685,6 +693,7 @@ function filtrerTrajets() {
     }
 }
 
+// Cette fonction affiche les trajets du moins cher
 
 function trierTrajets() {
 
@@ -727,6 +736,7 @@ function trierTrajets() {
     }
 }
 
+// Cette fonction affiche plusieurs informations 
 
 function afficherStatistiques() {
 
